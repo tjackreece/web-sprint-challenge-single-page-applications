@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Resturants from "./Resturants";
+// import Resturants from "./Resturants";
 
 function ResturnantCard(props) {
 	console.log(props);
