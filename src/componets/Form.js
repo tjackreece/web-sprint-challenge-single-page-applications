@@ -1,16 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Nav from "./componets/Nav";
-import Banner from "./componets/Banner";
-import Resturants from "./componets/Resturants";
-import ResturantCard from "./componets/ResturantCard";
-import resturantList from "./componets/ResturantList/ResturantList";
-import ResturnantCard from "./componets/ResturantCard";
-import Form2 from "./componets/Form2";
-
-// import { useState } from "react";
-// import { ResturantList } from "../src/componets/ResturantList/ResturantList";
-console.log(resturantList);
 const initialFormValues = {
 	///// TEXT INPUTS /////
 	username: "",
@@ -18,7 +7,8 @@ const initialFormValues = {
 	///// DROPDOWN /////
 	pizzaSize: "",
 };
-const App = () => {
+
+export default function App() {
 	const [friends, setFriends] = useState([]); // careful what you initialize your state to
 
 	// 🔥 STEP 1 - WE NEED STATE TO HOLD ALL VALUES OF THE FORM!
@@ -46,18 +36,23 @@ const App = () => {
 		//  c) POST new friend to backend, and on success update the list of friends in state with the new friend from API
 		//  d) also on success clear the form
 	};
+
 	return (
-		<>
-			<Nav />
-			<Banner />
-			{resturantList.map((resturant) => {
-				if (resturant !== null) {
-					return <ResturnantCard resturant={resturant} />;
-				}
-				return null;
+		<div className="container">
+			<h1>Form App</h1>
+
+			<FriendForm
+				// 🔥 STEP 2 - The form component needs its props.
+				//  Check implementation of FriendForm
+				//  to see what props it expects.
+				values={formValues}
+				update={updateForm}
+				submit={submitForm}
+			/>
+
+			{friends.map((friend) => {
+				return <Friend key={friend.id} details={friend} />;
 			})}
-			<Form2 values={formValues} update={updateForm} submit={submitForm} />
-		</>
+		</div>
 	);
-};
-export default App;
+}
